@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    @apply bg-bg text-text min-w-[320px];
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    background: #000000;
+    color: #ffffff;
+  }
+  h1, h2, h3 { @apply font-bold; }
+  a { @apply text-primary no-underline; }
+  a:hover { @apply underline; }
+}
