@@ -114,9 +114,9 @@ export const portfolioConfig: PortfolioConfig = {
 
   // Contact Information
   contacts: {
-    email: 'rifai@example.com',
-    github: 'https://github.com/username',
-    linkedin: 'https://linkedin.com/in/username',
-    cvUrl: '/cv.pdf' // Optional
+    email: 'rifaimuhammad2004@gmail.com',
+    github: 'https://github.com/riffffff',
+    linkedin: 'https://linkedin.com/in/muhammad-rifai-749727288',
+    cvUrl: '' // Optional
   }
 }
