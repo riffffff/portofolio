@@ -139,10 +139,17 @@ function App() {
                 const modalTitle = document.querySelector<HTMLElement>('#modalTitle')
                 const modalDesc = document.querySelector<HTMLElement>('#modalDesc')
                 const modalYear = document.querySelector<HTMLElement>('#modalYear')
-                if (modal && modalTitle && modalDesc && modalYear) {
+                const viewProjectBtn = document.querySelector<HTMLAnchorElement>('#viewProjectBtn')
+                if (modal && modalTitle && modalDesc && modalYear && viewProjectBtn) {
                   modalTitle.textContent = p.title
                   modalDesc.textContent = p.desc
                   modalYear.textContent = p.duration
+                  if (p.projectUrl) {
+                    viewProjectBtn.href = p.projectUrl
+                    viewProjectBtn.style.display = 'inline-flex'
+                  } else {
+                    viewProjectBtn.style.display = 'none'
+                  }
                   modal.showModal()
                 }
               }}>
@@ -216,6 +223,7 @@ function App() {
           <p className="detail-desc" id="modalDesc"></p>
         </div>
         <div className="modal-footer">
+          <a id="viewProjectBtn" href="#" target="_blank" rel="noopener noreferrer" className="btn primary" style={{ display: 'none' }}>View Project</a>
           <button className="btn ghost" onClick={() => {
             const modal = document.getElementById('projectModal') as HTMLDialogElement;
             modal?.classList.add('modal-closing');

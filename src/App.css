@@ -48,7 +48,7 @@
   width: 64px;
   height: 64px;
   transition: transform 0.3s ease;
-  border-radius: 16px;
+  border-radius: 50%;
   overflow: hidden;
 }
 
@@ -59,13 +59,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: 2px solid #1a1a1a;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease-out, border-color 0.3s ease;
+  border-radius: 50%;
+  border: 3px solid #2a2a2a;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3), 0 0 0 1px rgba(99, 102, 241, 0.2);
+  transition: transform 0.3s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .avatar-img:hover {
   transform: scale(1.05);
   border-color: #6366f1;
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5), 0 0 0 2px rgba(99, 102, 241, 0.4);
 }
 .avatar-ring {
   position: absolute;
@@ -293,6 +295,47 @@
   list-style: none;
 }
 .card-item { margin: 0; }
+
+/* Timeline for intern section on mobile */
+#intern .cards {
+  position: relative;
+  padding-left: 32px;
+}
+
+#intern .cards::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 16px;
+  bottom: 16px;
+  width: 2px;
+  background: linear-gradient(to bottom, #6366f1, #8b5cf6, #6366f1);
+  opacity: 0.3;
+}
+
+#intern .card-item {
+  position: relative;
+}
+
+#intern .card-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #6366f1;
+  border: 2px solid #0a0a0a;
+  box-shadow: 0 0 0 2px #6366f1;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#intern .card-item:hover::before {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 3px #6366f1, 0 0 12px rgba(99, 102, 241, 0.6);
+}
 .card {
   position: relative;
   display: grid;
@@ -365,6 +408,23 @@
     grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
+  
+  /* Keep timeline for intern on tablet */
+  #intern .cards {
+    grid-template-columns: 1fr;
+    padding-left: 36px;
+  }
+  
+  #intern .cards::before {
+    left: 11px;
+  }
+  
+  #intern .card-item::before {
+    left: -31px;
+    top: 22px;
+    width: 11px;
+    height: 11px;
+  }
   .card {
     padding: 16px;
     grid-template-columns: 48px 1fr;
@@ -387,6 +447,55 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
   }
+  
+  /* Timeline only for #intern section */
+  #intern .cards {
+    grid-template-columns: 1fr;
+    position: relative;
+    padding-left: 40px;
+  }
+  
+  /* Timeline vertical line */
+  #intern .cards::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: linear-gradient(to bottom, #6366f1, #8b5cf6, #6366f1);
+    opacity: 0.3;
+  }
+  
+  /* Timeline dot for each card */
+  #intern .card-item {
+    position: relative;
+  }
+  
+  #intern .card-item::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 24px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #6366f1;
+    border: 2px solid #0a0a0a;
+    box-shadow: 0 0 0 2px #6366f1;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #intern .card-item:hover::before {
+    transform: scale(1.3);
+    box-shadow: 0 0 0 3px #6366f1, 0 0 12px rgba(99, 102, 241, 0.6);
+  }
+  
+  #intern .card {
+    max-width: 600px;
+  }
+  
   .card {
     padding: 18px;
     grid-template-columns: 52px 1fr;
@@ -717,8 +826,8 @@ dialog.detail-modal {
 }
 
 dialog::backdrop {
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
   animation: backdropIn 0.24s ease;
 }
 dialog[open] {

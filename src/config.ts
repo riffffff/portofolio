@@ -19,6 +19,7 @@ export interface ProjectConfig {
   simulateButton?: boolean
   logo: string // Logo image URL
   duration: string // e.g., "Jan - Feb 2026"
+  projectUrl?: string // Optional: URL to project (enables "View Project" button in modal)
 }
 
 export interface InternConfig {
@@ -53,7 +54,7 @@ export const portfolioConfig: PortfolioConfig = {
   profile: {
     name: 'Muhamad Rifai',
     subtitle: 'Software Developer',
-    avatar: 'photo-profile.jpeg', // Path to your avatar image (optional)
+    avatar: 'photo-profile2.png', // Path to your avatar image (optional)
     bio: 'A tech-enthusiast student who codes, takes on freelance projects, and enjoys nature and sports. Always open, friendly, and excited to connect with new people.'
   },
 
@@ -61,17 +62,18 @@ export const portfolioConfig: PortfolioConfig = {
   projects: [
     {
       year: '2025',
-      title: 'Wp-Inviro Wordpress Theme',
+      title: 'Inviro WP Theme',
       desc: 'Create a theme in WordPress that can be used and has customizable content. built with PHP',
       href: 'https://waterpro.co.id/',
       pdfUrl: '/project-one.pdf',
       simulateButton: true,
       logo: 'logo-inviro.png',
-      duration: 'Oct - Dec 2025'
+      duration: 'Oct - Dec 2025',
+      projectUrl: 'https://waterpro.co.id/' // Optional: adds "View Project" button in modal
     },
     {
       year: '2025',
-      title: 'SIM Laboratory',
+      title: 'SIM Laboratorium',
       desc: 'Collaborating with students from the Poltekkes Kemenkes to create an information system for laboratory management. Built using Laravel full stack.',
       href: '#',
       pdfUrl: '/project-two.pdf',
@@ -80,14 +82,14 @@ export const portfolioConfig: PortfolioConfig = {
       duration: 'Sep - Nov 2025'
     },
     {
-      year: '2024 - 2025',
+      year: '2025',
       title: 'SIM Klinik Hewan',
       desc: 'Building a veterinary clinic information management system for Drh. Hendrick. Built with Laravel Full Stack.',
       href: '#',
       pdfUrl: '/project-three.pdf',
       simulateButton: true,
       logo: 'https://cdn.worldvectorlogo.com/logos/laravel-2.svg',
-      duration: 'Jan 2024 - Mei 2025'
+      duration: 'Jan - Mei 2025'
     },
   ],
 
