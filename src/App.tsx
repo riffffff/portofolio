@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { profile, projects, interns, skills, contacts } from './content'
+import { portfolioConfig } from './config'
 import './App.css'
 
 function App() {
   const year = new Date().getFullYear()
   const [active, setActive] = useState<'about' | 'projects' | 'contact'>('about')
+  const { profile, projects, interns, skills, contacts } = portfolioConfig
 
   useEffect(() => {
     const els = Array.from(document.querySelectorAll('.reveal'))
@@ -68,11 +69,22 @@ function App() {
       <header className="hero" aria-label="Intro">
         <div className="hero-top reveal">
           <div className="avatar" aria-hidden="true">
-            <span className="avatar-ring" />
-            <span className="avatar-dot" />
+            {profile.avatar ? (
+              <img src={profile.avatar} alt={profile.name} className="avatar-img" />
+            ) : (
+              <div className="avatar-default">
+                <span className="avatar-ring" />
+                <span className="avatar-dot" />
+                <span className="avatar-emoji">👨‍💻</span>
+              </div>
+            )}
           </div>
           <div className="hero-text">
-              <h1 className="title">Hi, I’m {profile.name}</h1>
+              <h1 className="title">
+                {`Hi, I'm ${profile.name}`.split('').map((char, i) => (
+                  <span key={i}>{char === ' ' ? '\u00A0' : char}</span>
+                ))}
+              </h1>
               <p className="subtitle">{profile.subtitle}</p>
           </div>
         </div>
@@ -83,8 +95,7 @@ function App() {
       <section id="about" className="section reveal">
         <h2 className="section-title">About</h2>
         <p className="section-text">
-          I build responsive, accessible, and delightful web experiences. I focus on
-          performance, semantics, and micro-interactions — especially on mobile.
+          {profile.bio}
         </p>
       </section>
       <section id="intern" className="section reveal">
@@ -92,40 +103,55 @@ function App() {
         <ul className="cards" role="list">
           {interns.map((it) => (
             <li key={it.title} className="card-item">
-              <div className="card" aria-label={it.title}>
-                <div className="card-badge">{it.year}</div>
-                <h3 className="card-title">{it.title}</h3>
-                <p className="card-desc">{it.desc}</p>
-              </div>
+              <a className="card no-underline" href="#" aria-label={it.title} onClick={(e) => {
+                e.preventDefault()
+                const modal = document.querySelector<HTMLDialogElement>('#internModal')
+                const modalTitle = document.querySelector<HTMLElement>('#internModalTitle')
+                const modalDesc = document.querySelector<HTMLElement>('#internModalDesc')
+                const modalYear = document.querySelector<HTMLElement>('#internModalYear')
+                if (modal && modalTitle && modalDesc && modalYear) {
+                  modalTitle.textContent = it.title
+                  modalDesc.textContent = it.desc
+                  modalYear.textContent = it.duration
+                  modal.showModal()
+                }
+              }}>
+                <img src={it.logo} alt={it.title} className="card-logo" />
+                <div className="card-content">
+                  <div className="card-badge">{it.duration}</div>
+                  <h3 className="card-title">{it.title}</h3>
+                  <p className="card-desc">{it.desc}</p>
+                </div>
+              </a>
             </li>
           ))}
         </ul>
       </section>
 
       <section id="experience" className="section reveal">
-        <h2 className="section-title">Experience</h2>
+        <h2 className="section-title">Recent Project</h2>
         <ul className="cards" role="list">
           {projects.map((p) => (
             <li key={p.title} className="card-item">
               <a className="card no-underline" href={p.href} aria-label={`Open ${p.title}`} onClick={(e) => {
                 e.preventDefault()
                 const modal = document.querySelector<HTMLDialogElement>('#projectModal')
-                const frame = document.querySelector<HTMLIFrameElement>('#projectFrame')
-                const downloadBtn = document.querySelector<HTMLAnchorElement>('#downloadBtn')
-                if (modal && frame) {
-                  frame.src = `${p.pdfUrl}#view=FitH`
+                const modalTitle = document.querySelector<HTMLElement>('#modalTitle')
+                const modalDesc = document.querySelector<HTMLElement>('#modalDesc')
+                const modalYear = document.querySelector<HTMLElement>('#modalYear')
+                if (modal && modalTitle && modalDesc && modalYear) {
+                  modalTitle.textContent = p.title
+                  modalDesc.textContent = p.desc
+                  modalYear.textContent = p.duration
                   modal.showModal()
-                  const simBtn = document.querySelector<HTMLButtonElement>('#simulateBtn')
-                  if (simBtn) simBtn.style.display = p.simulateButton ? 'inline-flex' : 'none'
-                  if (downloadBtn) {
-                    downloadBtn.href = p.pdfUrl || ''
-                    downloadBtn.style.display = 'inline-flex'
-                  }
                 }
               }}>
-                <div className="card-badge">{p.year}</div>
-                <h3 className="card-title">{p.title}</h3>
-                <p className="card-desc">{p.desc}</p>
+                <img src={p.logo} alt={p.title} className="card-logo" />
+                <div className="card-content">
+                  <div className="card-badge">{p.duration}</div>
+                  <h3 className="card-title">{p.title}</h3>
+                  <p className="card-desc">{p.desc}</p>
+                </div>
               </a>
             </li>
           ))}
@@ -174,23 +200,48 @@ function App() {
         <small>© {year} Rifai — Built with React + Vite</small>
       </footer>
 
-      {/* Project Modal */}
-      <dialog id="projectModal">
+      {/* Project Detail Modal */}
+      <dialog id="projectModal" className="detail-modal">
         <div className="modal-header">
-          <h3>Preview</h3>
+          <h3>Project Detail</h3>
           <button onClick={() => {
             const modal = document.getElementById('projectModal') as HTMLDialogElement;
             modal?.classList.add('modal-closing');
             setTimeout(() => { modal?.close(); modal?.classList.remove('modal-closing'); }, 240);
           }} aria-label="Close">✕</button>
         </div>
-        <div className="modal-body">
-          <embed id="projectFrame" title="Preview" type="application/pdf" width="100%" height="100%" style={{ display: 'block', background: '#222' }} />
+        <div className="modal-body modal-text-content">
+          <div className="detail-badge" id="modalYear"></div>
+          <h2 className="detail-title" id="modalTitle"></h2>
+          <p className="detail-desc" id="modalDesc"></p>
         </div>
         <div className="modal-footer">
-          <button id="simulateBtn" className="btn primary" onClick={() => alert('Simulasi dijalankan!')}>Simulasikan</button>
           <button className="btn ghost" onClick={() => {
             const modal = document.getElementById('projectModal') as HTMLDialogElement;
+            modal?.classList.add('modal-closing');
+            setTimeout(() => { modal?.close(); modal?.classList.remove('modal-closing'); }, 240);
+          }}>Close</button>
+        </div>
+      </dialog>
+
+      {/* Intern Detail Modal */}
+      <dialog id="internModal" className="detail-modal">
+        <div className="modal-header">
+          <h3>Intern Detail</h3>
+          <button onClick={() => {
+            const modal = document.getElementById('internModal') as HTMLDialogElement;
+            modal?.classList.add('modal-closing');
+            setTimeout(() => { modal?.close(); modal?.classList.remove('modal-closing'); }, 240);
+          }} aria-label="Close">✕</button>
+        </div>
+        <div className="modal-body modal-text-content">
+          <div className="detail-badge" id="internModalYear"></div>
+          <h2 className="detail-title" id="internModalTitle"></h2>
+          <p className="detail-desc" id="internModalDesc"></p>
+        </div>
+        <div className="modal-footer">
+          <button className="btn ghost" onClick={() => {
+            const modal = document.getElementById('internModal') as HTMLDialogElement;
             modal?.classList.add('modal-closing');
             setTimeout(() => { modal?.close(); modal?.classList.remove('modal-closing'); }, 240);
           }}>Close</button>

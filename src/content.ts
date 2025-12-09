@@ -1,10 +1,13 @@
 export const profile = {
-  name: 'Rifai',
-  subtitle: 'Frontend Engineer crafting clean, fast interfaces.'
+  name: 'Muhammad Rifai',
+    subtitle: 'Full Stack Developer & UI/UX Enthusiast',
+    avatar: '/avatar.jpg', // Taruh foto di folder public/avatar.jpg
+    bio: 'Saya adalah developer yang passionate dalam membuat aplikasi web modern dengan fokus pada user experience dan performance.'
+ 
 }
 
 export const projects = [
-  { year: '2025', title: 'Project One', desc: 'Minimal landing page with smooth transitions and solid a11y.', href: '#', pdfUrl: '/project-one.pdf', simulateButton: true },
+  { year: '3000', title: 'Project One', desc: 'Minimal landing page with smooth transitions and solid a11y.', href: '#', pdfUrl: '/project-one.pdf', simulateButton: true },
   { year: '2025', title: 'Project Two', desc: 'Mobile-first dashboard with real-time charts and gestures.', href: '#', pdfUrl: '/project-two.pdf', simulateButton: false },
   { year: '2024', title: 'Project Three', desc: 'PWA for offline notes, tiny bundle and instant loads.', href: '#', pdfUrl: '/project-three.pdf', simulateButton: true },
 ]
