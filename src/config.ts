@@ -53,7 +53,7 @@ export const portfolioConfig: PortfolioConfig = {
   profile: {
     name: 'Muhamad Rifai',
     subtitle: 'Software Developer',
-    avatar: '',
+    avatar: 'photo-profile.jpeg', // Path to your avatar image (optional)
     bio: 'A tech-enthusiast student who codes, takes on freelance projects, and enjoys nature and sports. Always open, friendly, and excited to connect with new people.'
   },
 
@@ -67,7 +67,7 @@ export const portfolioConfig: PortfolioConfig = {
       pdfUrl: '/project-one.pdf',
       simulateButton: true,
       logo: 'logo-inviro.png',
-      duration: 'Jan - Mar 2025'
+      duration: 'Oct - Dec 2025'
     },
     {
       year: '2025',
@@ -77,7 +77,7 @@ export const portfolioConfig: PortfolioConfig = {
       pdfUrl: '/project-two.pdf',
       simulateButton: false,
       logo: 'https://cdn.worldvectorlogo.com/logos/laravel-2.svg',
-      duration: 'Apr - Jun 2025'
+      duration: 'Sep - Nov 2025'
     },
     {
       year: '2024 - 2025',
@@ -87,7 +87,7 @@ export const portfolioConfig: PortfolioConfig = {
       pdfUrl: '/project-three.pdf',
       simulateButton: true,
       logo: 'https://cdn.worldvectorlogo.com/logos/laravel-2.svg',
-      duration: 'Oct 2024 - Feb 2025'
+      duration: 'Jan 2024 - Mei 2025'
     },
   ],
 
