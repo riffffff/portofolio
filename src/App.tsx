@@ -109,18 +109,26 @@ function App() {
                 const modalTitle = document.querySelector<HTMLElement>('#internModalTitle')
                 const modalDesc = document.querySelector<HTMLElement>('#internModalDesc')
                 const modalYear = document.querySelector<HTMLElement>('#internModalYear')
+                const modalRole = document.querySelector<HTMLElement>('#internModalRole')
                 if (modal && modalTitle && modalDesc && modalYear) {
                   modalTitle.textContent = it.title
                   modalDesc.textContent = it.desc
                   modalYear.textContent = it.duration
+                  if (modalRole) {
+                    if (it.role) { modalRole.textContent = it.role; modalRole.style.display = 'inline-block' }
+                    else { modalRole.textContent = ''; modalRole.style.display = 'none' }
+                  }
                   modal.showModal()
                 }
               }}>
                 <img src={it.logo} alt={it.title} className="card-logo" />
                 <div className="card-content">
-                  <div className="card-badge">{it.duration}</div>
                   <h3 className="card-title">{it.title}</h3>
                   <p className="card-desc">{it.desc}</p>
+                  <div className="card-meta">
+                    {it.role ? <div className="card-role">{it.role}</div> : <div />}
+                    <div className="card-badge">{it.duration}</div>
+                  </div>
                 </div>
               </a>
             </li>
@@ -139,11 +147,16 @@ function App() {
                 const modalTitle = document.querySelector<HTMLElement>('#modalTitle')
                 const modalDesc = document.querySelector<HTMLElement>('#modalDesc')
                 const modalYear = document.querySelector<HTMLElement>('#modalYear')
+                const modalRole = document.querySelector<HTMLElement>('#modalRole')
                 const viewProjectBtn = document.querySelector<HTMLAnchorElement>('#viewProjectBtn')
                 if (modal && modalTitle && modalDesc && modalYear && viewProjectBtn) {
                   modalTitle.textContent = p.title
                   modalDesc.textContent = p.desc
                   modalYear.textContent = p.duration
+                  if (modalRole) {
+                    if (p.role) { modalRole.textContent = p.role; modalRole.style.display = 'inline-block' }
+                    else { modalRole.textContent = ''; modalRole.style.display = 'none' }
+                  }
                   if (p.projectUrl) {
                     viewProjectBtn.href = p.projectUrl
                     viewProjectBtn.style.display = 'inline-flex'
@@ -155,9 +168,12 @@ function App() {
               }}>
                 <img src={p.logo} alt={p.title} className="card-logo" />
                 <div className="card-content">
-                  <div className="card-badge">{p.duration}</div>
                   <h3 className="card-title">{p.title}</h3>
                   <p className="card-desc">{p.desc}</p>
+                  <div className="card-meta">
+                    {p.role ? <div className="card-role">{p.role}</div> : <div />}
+                    <div className="card-badge">{p.duration}</div>
+                  </div>
                 </div>
               </a>
             </li>
@@ -219,6 +235,7 @@ function App() {
         </div>
         <div className="modal-body modal-text-content">
           <div className="detail-badge" id="modalYear"></div>
+          <div className="detail-role" id="modalRole" style={{ display: 'none' }}></div>
           <h2 className="detail-title" id="modalTitle"></h2>
           <p className="detail-desc" id="modalDesc"></p>
         </div>
@@ -244,6 +261,7 @@ function App() {
         </div>
         <div className="modal-body modal-text-content">
           <div className="detail-badge" id="internModalYear"></div>
+          <div className="detail-role" id="internModalRole" style={{ display: 'none' }}></div>
           <h2 className="detail-title" id="internModalTitle"></h2>
           <p className="detail-desc" id="internModalDesc"></p>
         </div>

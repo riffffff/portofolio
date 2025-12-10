@@ -20,6 +20,7 @@ export interface ProjectConfig {
   logo: string // Logo image URL
   duration: string // e.g., "Jan - Feb 2026"
   projectUrl?: string // Optional: URL to project (enables "View Project" button in modal)
+  role?: string // Optional role label to show on the project card
 }
 
 export interface InternConfig {
@@ -28,6 +29,7 @@ export interface InternConfig {
   desc: string
   logo: string // Logo image URL
   duration: string // e.g., "Jan - Feb 2026"
+  role?: string // Optional role label to show on the intern card
 }
 
 export interface ContactsConfig {
@@ -69,7 +71,8 @@ export const portfolioConfig: PortfolioConfig = {
       simulateButton: true,
       logo: 'logo-inviro.png',
       duration: 'Oct - Dec 2025',
-      projectUrl: 'https://waterpro.co.id/' // Optional: adds "View Project" button in modal
+      projectUrl: 'https://waterpro.co.id/', // Optional: adds "View Project" button in modal
+      role: 'Lead Developer'
     },
     {
       year: '2025',
@@ -79,7 +82,8 @@ export const portfolioConfig: PortfolioConfig = {
       pdfUrl: '/project-two.pdf',
       simulateButton: false,
       logo: 'https://cdn.worldvectorlogo.com/logos/laravel-2.svg',
-      duration: 'Sep - Nov 2025'
+      duration: 'Sep - Nov 2025',
+      role: 'Fullstack'
     },
     {
       year: '2025',
@@ -89,7 +93,8 @@ export const portfolioConfig: PortfolioConfig = {
       pdfUrl: '/project-three.pdf',
       simulateButton: true,
       logo: 'https://cdn.worldvectorlogo.com/logos/laravel-2.svg',
-      duration: 'Jan - Mei 2025'
+      duration: 'Jan - Mei 2025',
+      role: 'Frontend '
     },
   ],
 
@@ -97,10 +102,11 @@ export const portfolioConfig: PortfolioConfig = {
   interns: [
     {
       year: '2025 - 2026',
-      title: 'Backend Engineer Intern — PT. Engineering Career Center',
+      title: 'PT. Engineering Career Center',
       desc: 'Actively developing a B2B management platform designed to optimize partner interactions and support scalable business processes.',
       logo: 'logo-ecc.png',
-      duration: 'Sep 2025 - Feb 2026'
+      duration: 'Sep 2025 - Feb 2026',
+      role: 'Backend'
     },
   ],
 
